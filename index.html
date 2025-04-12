@@ -9,14 +9,33 @@
       font-family: Arial, sans-serif;
       margin: 0;
       background-color: #f2f2f2;
+      animation: fadeInBody 1.2s ease-in-out;
     }
+
+    @keyframes fadeInBody {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .header {
       background-color: #193c55;
       color: white;
       padding: 15px 20px;
       display: flex;
       align-items: center;
+      justify-content: space-between;
       flex-wrap: wrap;
+      position: relative;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
     }
     .header img {
       height: 50px;
@@ -30,6 +49,47 @@
       font-size: 14px;
       margin: 0;
     }
+    .menu-button {
+      font-size: 24px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 65px;
+      right: 20px;
+      background-color: white;
+      color: black;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      border-radius: 5px;
+      overflow: hidden;
+      z-index: 1000;
+      animation: fadeInDropdown 0.3s ease;
+    }
+    .dropdown a {
+      display: block;
+      padding: 10px 15px;
+      text-decoration: none;
+      color: #193c55;
+    }
+    .dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
+    @keyframes fadeInDropdown {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
     .container {
       display: flex;
       flex-wrap: wrap;
@@ -38,7 +98,21 @@
       background-color: white;
       padding: 30px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      animation: fadeInContainer 1s ease 0.3s forwards;
+      opacity: 0;
     }
+
+    @keyframes fadeInContainer {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .profile-photo {
       flex: 1 1 100%;
       text-align: center;
@@ -76,7 +150,7 @@
     }
 
     @media (max-width: 480px) {
-      .header {
+      .header-left {
         flex-direction: column;
         align-items: flex-start;
       }
@@ -93,10 +167,17 @@
 <body>
 
   <div class="header">
-    <img src="https://i.pinimg.com/originals/0f/9f/fb/0f9ffb500ee2b0398b78ef52faad6648.jpg" alt="Logo" />
-    <div>
-      <h1>SISTEM APLIKASI TERPADU</h1>
-      <p>PERSAUDARAAN SETIA HATI TERATE</p>
+    <div class="header-left">
+      <img src="https://i.pinimg.com/originals/0f/9f/fb/0f9ffb500ee2b0398b78ef52faad6648.jpg" alt="Logo" />
+      <div>
+        <h1>SISTEM APLIKASI TERPADU</h1>
+        <p>PERSAUDARAAN SETIA HATI TERATE</p>
+      </div>
+    </div>
+    <button class="menu-button" onclick="toggleDropdown()">⋮</button>
+    <div class="dropdown" id="dropdownMenu">
+      <a href="#">Help</a>
+      <a href="#">Tentang Aplikasi</a>
     </div>
   </div>
 
@@ -117,6 +198,22 @@
       <div><span class="label">Predikat :</span> SATRIA ANOM</div>
     </div>
   </div>
+
+  <script>
+    function toggleDropdown() {
+      const dropdown = document.getElementById("dropdownMenu");
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.menu-button')) {
+        const dropdown = document.getElementById("dropdownMenu");
+        if (dropdown.style.display === "block") {
+          dropdown.style.display = "none";
+        }
+      }
+    }
+  </script>
 
 </body>
 </html>
