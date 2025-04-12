@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sistem Aplikasi Terpadu</title>
   <style>
     body {
@@ -16,6 +16,7 @@
       padding: 15px 20px;
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
     }
     .header img {
       height: 50px;
@@ -31,6 +32,7 @@
     }
     .container {
       display: flex;
+      flex-wrap: wrap;
       max-width: 1000px;
       margin: 30px auto;
       background-color: white;
@@ -38,16 +40,17 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     .profile-photo {
-      flex: 1;
+      flex: 1 1 100%;
       text-align: center;
+      margin-bottom: 20px;
     }
     .profile-photo img {
       width: 200px;
+      max-width: 100%;
       border: 1px solid #ccc;
     }
     .profile-info {
-      flex: 2;
-      padding-left: 30px;
+      flex: 2 1 100%;
     }
     .profile-info div {
       margin-bottom: 10px;
@@ -56,6 +59,34 @@
       font-weight: bold;
       display: inline-block;
       width: 180px;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        flex-wrap: nowrap;
+      }
+      .profile-photo {
+        flex: 1;
+        margin-bottom: 0;
+      }
+      .profile-info {
+        flex: 2;
+        padding-left: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header img {
+        margin-bottom: 10px;
+      }
+      .profile-info span.label {
+        width: 100%;
+        margin-bottom: 5px;
+      }
     }
   </style>
 </head>
@@ -71,7 +102,7 @@
 
   <div class="container">
     <div class="profile-photo">
-      <img src="PSHT17.jpg" alt="Foto Profil">
+      <img src="PSHT17.jpg" alt="Foto Profil" />
     </div>
     <div class="profile-info">
       <div><span class="label">NIK :</span> 6403063107030001</div>
